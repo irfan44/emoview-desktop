@@ -5,8 +5,9 @@ const electronAPI = {
   getProfile: () => ipcRenderer.invoke('auth:get-profile'),
   logOut: () => ipcRenderer.send('auth:log-out'),
 
-  openFloating: () => ipcRenderer.invoke('floating:open'),
-  closeFloating: () => ipcRenderer.invoke('floating:close'),
+  openFloating: (id, accessToken) =>
+    ipcRenderer.send('floating:open', id, accessToken),
+  closeFloating: () => ipcRenderer.send('floating:close'),
 };
 
 process.once('loaded', () => {
