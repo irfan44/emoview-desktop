@@ -7,8 +7,8 @@ const preload = join(__dirname, '../preload/index.js');
 
 async function createAppWindow() {
   win = new BrowserWindow({
-    title: 'Main window',
-    icon: join(__dirname, '../static/favicon.ico'),
+    title: 'Emoview',
+    icon: join(__dirname, './static/icon.png'),
     webPreferences: {
       preload,
       nodeIntegration: false,
