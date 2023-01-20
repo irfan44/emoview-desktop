@@ -1,0 +1,29 @@
+/**
+ * @see https://www.electron.build/configuration/configuration
+ */
+{
+  appId: 'YourAppID',
+  asar: true,
+  directories: {
+    output: 'release/${version}',
+  },
+  files: ['main', 'preload', 'services'],
+  mac: {
+    artifactName: '${productName}_${version}.${ext}',
+    target: ['dmg'],
+  },
+  win: {
+    target: [
+      {
+        target: 'nsis',
+        arch: ['x64'],
+      },
+    ],
+    artifactName: '${productName}_${version}.${ext}',
+  },
+  nsis: {
+    oneClick: true,
+    perMachine: false,
+    deleteAppDataOnUninstall: false,
+  },
+}

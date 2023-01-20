@@ -6,6 +6,7 @@ specifiers:
   electron-builder: ^23.6.0
   jwt-decode: ^3.1.2
   keytar: ^7.9.0
+  prettier: ^2.8.3
 
 dependencies:
   axios: 1.2.3
@@ -15,6 +16,7 @@ dependencies:
 devDependencies:
   electron: 22.0.3
   electron-builder: 23.6.0
+  prettier: 2.8.3
 
 packages:
 
@@ -1382,6 +1384,12 @@ packages:
       tar-fs: 2.1.1
       tunnel-agent: 0.6.0
     dev: false
+
+  /prettier/2.8.3:
+    resolution: {integrity: sha512-tJ/oJ4amDihPoufT5sM0Z1SKEuKay8LfVAMlbbhnnkvt6BUserZylqo2PN+p9KeljLr0OHa2rXHU1T8reeoTrw==}
+    engines: {node: '>=10.13.0'}
+    hasBin: true
+    dev: true
 
   /progress/2.0.3:
     resolution: {integrity: sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==}

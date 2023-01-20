@@ -1,18 +1,20 @@
 {
   "name": "emoview-desktop",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "main": "main/index.js",
+  "description": "Emotion recognition apps",
+  "author": "irfannmuhajir@upi.edu",
+  "license": "MIT",
   "scripts": {
     "dev": "electron .",
+    "build": "electron-builder",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "electron": "^22.0.3",
-    "electron-builder": "^23.6.0"
+    "electron-builder": "^23.6.0",
+    "prettier": "^2.8.3"
   },
   "dependencies": {
     "axios": "^1.2.3",
