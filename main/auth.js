@@ -13,13 +13,16 @@ function createAuthWindow() {
   destroyAuthWin();
 
   win = new BrowserWindow({
-    width: 800,
+    width: 600,
     height: 600,
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: false,
     },
     titleBarStyle: 'hidden',
+    titleBarOverlay: {
+      color: '#f1f2f6',
+    },
   });
 
   win.loadURL(getAuthenticationURL());
