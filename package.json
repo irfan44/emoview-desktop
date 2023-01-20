@@ -6,12 +6,14 @@
   "author": "irfannmuhajir@upi.edu",
   "license": "MIT",
   "scripts": {
-    "dev": "electron .",
+    "dev": "cross-env NODE_ENV=development electron .",
+    "dev:local": "cross-env NODE_ENV=local electron .",
     "build": "electron-builder",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "electron": "^22.0.3",
     "electron-builder": "^23.6.0",
     "prettier": "^2.8.3"

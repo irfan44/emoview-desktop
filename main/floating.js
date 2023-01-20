@@ -5,7 +5,7 @@ let floatWin = null;
 
 const preload = join(__dirname, '../preload/index.js');
 
-async function createFloatingWindow(width, ...arg) {
+async function createFloatingWindow(width, id, accessToken) {
   floatWin = new BrowserWindow({
     webPreferences: {
       preload,
@@ -15,14 +15,24 @@ async function createFloatingWindow(width, ...arg) {
     width: 256,
     height: 220,
     alwaysOnTop: true,
-    focusable: false,
+    focusable: true,
     frame: false,
-    transparent: true,
+    transparent: false,
     y: 48,
     x: width - 272,
   });
 
-  floatWin.loadURL(`https://google.com`);
+  if (process.env.NODE_ENV === 'local') {
+    floatWin.loadURL(
+      `http://localhost:5173/in-meeting-display?id=${id}&accessToken=${accessToken}
+      `
+    );
+  } else {
+    floatWin.loadURL(
+      `https://emoview.irfannm.xyz/in-meeting-display?id=${id}&accessToken=${accessToken}
+      `
+    );
+  }
 
   floatWin.setContentProtection(true);
 

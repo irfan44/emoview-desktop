@@ -13,7 +13,6 @@ async function createAppWindow() {
       preload,
       nodeIntegration: false,
       contextIsolation: true,
-      webSecurity: false,
     },
     titleBarStyle: 'hidden',
     titleBarOverlay: {
@@ -23,7 +22,11 @@ async function createAppWindow() {
     height: 800,
   });
 
-  win.loadURL('https://emoview.irfannm.xyz/');
+  if (process.env.NODE_ENV === 'local') {
+    win.loadURL('http://localhost:5173');
+  } else {
+    win.loadURL('https://emoview.irfannm.xyz/');
+  }
 
   win.webContents.setWindowOpenHandler(({ url }) => {
     if (url.startsWith('https:')) shell.openExternal(url);
