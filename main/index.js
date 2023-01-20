@@ -4,6 +4,7 @@ const {
   getAccessToken,
   getProfile,
   refreshTokens,
+  addUserProfile,
 } = require('../services/auth');
 const { createAppWindow, win } = require('./app');
 const { createAuthWindow, createLogoutWindow } = require('./auth');
@@ -21,6 +22,7 @@ if (!app.requestSingleInstanceLock()) {
 async function showWindow() {
   try {
     await refreshTokens();
+    await addUserProfile();
     createAppWindow();
   } catch (err) {
     createAuthWindow();
@@ -42,11 +44,11 @@ app.whenReady().then(() => {
   });
 
   // ipc for floating window
-  ipcMain.handle('floating:open', (_, ...arg) => {
-    createFloatingWindow(width, ...arg);
+  ipcMain.on('floating:open', (_, ...args) => {
+    createFloatingWindow(width, ...args);
   });
-  ipcMain.handle('floating:close', () => {
-    floatWin.hide();
+  ipcMain.on('floating:close', () => {
+    BrowserWindow.getFocusedWindow().hide();
   });
 });
 

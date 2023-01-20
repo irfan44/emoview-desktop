@@ -8,6 +8,7 @@ const {
   AUTH0_AUDIENCE,
   AUTH0_CLIENT_ID,
   AUTH0_REDIRECT_URI,
+  BE_ENDPOINT,
 } = require('../main/constants');
 
 const keytarService = 'electron-openid-oauth';
@@ -33,7 +34,7 @@ function getAuthenticationURL() {
     'audience=' +
     AUTH0_AUDIENCE +
     '&' +
-    'scope=openid profile offline_access&' +
+    'scope=openid profile offline_access read:current_user&' +
     'response_type=code&' +
     'client_id=' +
     AUTH0_CLIENT_ID +
@@ -41,6 +42,38 @@ function getAuthenticationURL() {
     'redirect_uri=' +
     AUTH0_REDIRECT_URI
   );
+}
+
+async function addUserProfile() {
+  const {
+    nickname,
+    name,
+    sub,
+    // email,
+    picture,
+    [`https://customclaim.com/id`]: userId,
+    [`https://customclaim.com/role`]: role,
+  } = profile;
+
+  const body = {
+    name: nickname,
+    fullname: name,
+    authId: sub,
+    // email: email,
+    picture: picture,
+    userId: userId,
+    role: role[0],
+  };
+
+  try {
+    await axios.post(`${BE_ENDPOINT}/user`, body, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+  } catch (error) {
+    throw error;
+  }
 }
 
 async function refreshTokens() {
@@ -55,6 +88,7 @@ async function refreshTokens() {
         grant_type: 'refresh_token',
         client_id: AUTH0_CLIENT_ID,
         refresh_token: refreshToken,
+        audience: `https://${AUTH0_APP_DOMAIN}/api/v2/`,
       },
     };
 
@@ -126,6 +160,7 @@ module.exports = {
   getAuthenticationURL,
   getLogOutUrl,
   getProfile,
+  addUserProfile,
   loadTokens,
   logout,
   refreshTokens,
