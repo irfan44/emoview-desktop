@@ -6,6 +6,7 @@ const {
   logout,
 } = require('../services/auth');
 const { createAppWindow } = require('./app');
+const { join } = require('node:path');
 
 let win = null;
 
@@ -15,6 +16,7 @@ function createAuthWindow() {
   win = new BrowserWindow({
     width: 600,
     height: 600,
+    icon: join(__dirname, './static/icon.png'),
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: false,

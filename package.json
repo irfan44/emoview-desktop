@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "main/index.js",
   "description": "Emotion recognition apps",
-  "author": "irfannmuhajir@upi.edu",
+  "author": "Irfan Nurghiffari Muhajir",
   "license": "MIT",
   "scripts": {
     "dev": "cross-env NODE_ENV=development electron .",

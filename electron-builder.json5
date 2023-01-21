@@ -2,7 +2,8 @@
  * @see https://www.electron.build/configuration/configuration
  */
 {
-  appId: 'com.emoview.irfannm.xyz',
+  appId: 'com.electron.emoview.irfannm.xyz',
+  productName: 'Emoview for Desktop',
   asar: true,
   directories: {
     output: 'release/${version}',
