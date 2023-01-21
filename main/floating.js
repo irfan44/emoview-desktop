@@ -11,6 +11,7 @@ async function createFloatingWindow(width, id, accessToken) {
       preload,
       nodeIntegration: false,
       contextIsolation: true,
+      webSecurity: false,
     },
     width: 256,
     height: 220,

@@ -13,6 +13,7 @@ async function createAppWindow() {
       preload,
       nodeIntegration: false,
       contextIsolation: true,
+      webSecurity: false,
     },
     titleBarStyle: 'hidden',
     titleBarOverlay: {
