@@ -29,6 +29,10 @@ async function createAppWindow() {
     win.loadURL('https://emoview.irfannm.xyz/');
   }
 
+  if (process.platform === 'linux') {
+    win.autoHideMenuBar(true);
+  }
+
   win.webContents.setWindowOpenHandler(({ url }) => {
     if (url.startsWith('https:')) shell.openExternal(url);
     return { action: 'deny' };
