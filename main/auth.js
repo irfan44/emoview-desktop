@@ -29,9 +29,9 @@ function createAuthWindow() {
 
   win.loadURL(getAuthenticationURL());
 
-  if (process.platform === 'linux') {
-    win.autoHideMenuBar(true);
-  }
+  // if (process.platform === 'linux') {
+  //   win.autoHideMenuBar(true);
+  // }
 
   const {
     session: { webRequest },

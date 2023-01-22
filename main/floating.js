@@ -36,9 +36,9 @@ async function createFloatingWindow(width, id, accessToken) {
     );
   }
 
-  if (process.platform === 'linux') {
-    floatWin.autoHideMenuBar(true);
-  }
+  // if (process.platform === 'linux') {
+  //   floatWin.autoHideMenuBar(true);
+  // }
 
   floatWin.setContentProtection(true);
 
