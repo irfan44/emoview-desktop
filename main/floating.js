@@ -40,7 +40,11 @@ async function createFloatingWindow(width, id, accessToken) {
   //   floatWin.autoHideMenuBar(true);
   // }
 
-  floatWin.setContentProtection(true);
+  if (process.env.NODE_ENV) {
+    floatWin.setContentProtection(false);
+  } else {
+    floatWin.setContentProtection(true);
+  }
 
   floatWin.once('ready-to-show', () => {
     floatWin.show();
