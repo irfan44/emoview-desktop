@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, screen } = require('electron');
+const { app, BrowserWindow, ipcMain, Menu, screen } = require('electron');
 const { release } = require('node:os');
 const {
   getAccessToken,
@@ -29,6 +29,10 @@ async function showWindow() {
   }
 }
 
+if (!process.env.NODE_ENV) {
+  Menu.setApplicationMenu(null);
+}
+
 app.whenReady().then(() => {
   showWindow();
 
@@ -48,7 +52,7 @@ app.whenReady().then(() => {
     createFloatingWindow(width, ...args);
   });
   ipcMain.on('floating:close', () => {
-    BrowserWindow.getFocusedWindow().hide();
+    BrowserWindow.getFocusedWindow().close();
   });
 });
 
