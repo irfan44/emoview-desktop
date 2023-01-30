@@ -33,10 +33,10 @@ async function createAppWindow() {
   //   win.autoHideMenuBar(true);
   // }
 
-  // win.webContents.setWindowOpenHandler(({ url }) => {
-  //   if (url.startsWith('https:')) shell.openExternal(url);
-  //   return { action: 'deny' };
-  // });
+  win.webContents.setWindowOpenHandler(({ url }) => {
+    if (url.startsWith('https://meet.google.com')) shell.openExternal(url);
+    return { action: 'deny' };
+  });
 }
 
 module.exports = { createAppWindow, win };
