@@ -34,7 +34,7 @@ async function createAppWindow() {
   // }
 
   win.webContents.setWindowOpenHandler(({ url }) => {
-    if (url.startsWith('https:')) shell.openExternal(url);
+    if (url.startsWith('https://')) shell.openExternal(url);
     return { action: 'deny' };
   });
 }
