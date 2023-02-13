@@ -1,4 +1,4 @@
-const { BrowserWindow } = require('electron');
+const { BrowserWindow, session } = require('electron');
 const {
   getAuthenticationURL,
   getLogOutUrl,
@@ -71,6 +71,7 @@ function createLogoutWindow() {
 
   logoutWindow.on('ready-to-show', async () => {
     await logout();
+    await session.defaultSession.clearStorageData();
     logoutWindow.close();
   });
 }
