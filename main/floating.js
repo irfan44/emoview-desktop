@@ -15,7 +15,7 @@ async function createFloatingWindow(width, id, accessToken) {
     },
     icon: join(__dirname, './static/icon.png'),
     width: 256,
-    height: 220,
+    height: 325,
     alwaysOnTop: true,
     focusable: true,
     frame: false,
