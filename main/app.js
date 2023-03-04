@@ -38,6 +38,14 @@ async function createAppWindow() {
     return { action: 'deny' };
   });
 
+  win.webContents.on('did-start-loading', () => {
+    win.setProgressBar(2);
+  });
+
+  win.webContents.on('did-stop-loading', () => {
+    win.setProgressBar(-1);
+  });
+
   win.webContents.on('did-fail-load', () => {
     win.loadURL('https://emoview.irfannm.xyz');
   });
