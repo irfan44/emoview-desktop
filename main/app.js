@@ -26,7 +26,7 @@ async function createAppWindow() {
   if (process.env.NODE_ENV === 'local') {
     win.loadURL('http://localhost:5173');
   } else {
-    win.loadURL('https://emoview.irfannm.xyz/');
+    win.loadURL('https://emoview.irfannm.xyz');
   }
 
   // if (process.platform === 'linux') {
@@ -36,6 +36,10 @@ async function createAppWindow() {
   win.webContents.setWindowOpenHandler(({ url }) => {
     if (url.startsWith('https://')) shell.openExternal(url);
     return { action: 'deny' };
+  });
+
+  win.webContents.on('did-fail-load', () => {
+    win.loadURL('https://emoview.irfannm.xyz');
   });
 }
 

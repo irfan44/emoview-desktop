@@ -29,9 +29,9 @@ async function showWindow() {
   }
 }
 
-if (!process.env.NODE_ENV) {
-  Menu.setApplicationMenu(null);
-}
+// if (!process.env.NODE_ENV) {
+//   Menu.setApplicationMenu(null);
+// }
 
 app.whenReady().then(() => {
   showWindow();

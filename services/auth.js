@@ -134,6 +134,32 @@ async function loadTokens(callbackURL) {
     profile = jwtDecode(response.data.id_token);
     refreshToken = response.data.refresh_token;
 
+    const {
+      nickname,
+      name,
+      sub,
+      // email,
+      picture,
+      [`https://customclaim.com/id`]: userId,
+      [`https://customclaim.com/role`]: role,
+    } = profile;
+
+    const body = {
+      name: nickname,
+      fullname: name,
+      authId: sub,
+      email: '',
+      picture: picture,
+      userId: userId,
+      role: 'teacher',
+    };
+
+    await axios.post(`${BE_ENDPOINT}/user`, body, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
     if (refreshToken) {
       await setPassword(keytarService, keytarAccount, refreshToken);
     }
