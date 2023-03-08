@@ -1,6 +1,6 @@
 {
   "name": "emoview-desktop",
-  "version": "1.0.1",
+  "version": "1.5.0",
   "main": "main/index.js",
   "description": "Emotion recognition apps",
   "author": "Irfan Nurghiffari Muhajir",
