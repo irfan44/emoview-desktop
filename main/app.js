@@ -26,7 +26,7 @@ async function createAppWindow() {
   if (process.env.NODE_ENV === 'local') {
     win.loadURL('http://localhost:5173');
   } else {
-    win.loadURL('https://emoview.irfannm.xyz');
+    win.loadURL('https://emoview-v15.vercel.app');
   }
 
   // if (process.platform === 'linux') {
@@ -39,7 +39,7 @@ async function createAppWindow() {
   });
 
   win.webContents.on('did-fail-load', () => {
-    win.loadURL('https://emoview.irfannm.xyz');
+    win.loadURL('https://emoview-v15.vercel.app');
   });
 }
 

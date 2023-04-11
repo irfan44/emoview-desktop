@@ -22,8 +22,7 @@ if (!app.requestSingleInstanceLock()) {
 async function showWindow() {
   try {
     await refreshTokens();
-    await addUserProfile();
-    createAppWindow();
+    await createAppWindow();
   } catch (err) {
     createAuthWindow();
   }
