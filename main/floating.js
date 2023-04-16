@@ -1,5 +1,7 @@
 const { BrowserWindow } = require('electron');
 const { join } = require('node:path');
+const { LOCAL_FE_ENDPOINT } = require('../main/constants');
+const {PROD_FE_ENDPOINT} = require("./constants");
 
 let floatWin = null;
 
@@ -25,20 +27,11 @@ async function createFloatingWindow(width, id, accessToken) {
   });
 
   if (process.env.NODE_ENV === 'local') {
-    floatWin.loadURL(
-      `http://localhost:5173/in-meeting-display?id=${id}&accessToken=${accessToken}
-      `
-    );
+    floatWin.loadURL(`${LOCAL_FE_ENDPOINT}/in-meeting-display?id=${id}&accessToken=${accessToken}`);
   } else {
-    floatWin.loadURL(
-      `https://emoview.irfannm.xyz/in-meeting-display?id=${id}&accessToken=${accessToken}
-      `
+    floatWin.loadURL(`${PROD_FE_ENDPOINT}/in-meeting-display?id=${id}&accessToken=${accessToken}`
     );
   }
-
-  // if (process.platform === 'linux') {
-  //   floatWin.autoHideMenuBar(true);
-  // }
 
   if (process.env.NODE_ENV) {
     floatWin.setContentProtection(false);

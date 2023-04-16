@@ -1,13 +1,6 @@
 const { app, BrowserWindow, ipcMain, Menu, screen } = require('electron');
 const { release } = require('node:os');
-const {
-  getAccessToken,
-  getProfile,
-  refreshTokens,
-  addUserProfile,
-} = require('../services/auth');
 const { createAppWindow, win } = require('./app');
-const { createAuthWindow, createLogoutWindow } = require('./auth');
 const { createFloatingWindow, floatWin } = require('./floating');
 
 if (release().startsWith('6.1')) app.disableHardwareAcceleration();
@@ -19,33 +12,12 @@ if (!app.requestSingleInstanceLock()) {
   process.exit(0);
 }
 
-async function showWindow() {
-  try {
-    await refreshTokens();
-    await addUserProfile();
-    createAppWindow();
-  } catch (err) {
-    createAuthWindow();
-  }
-}
-
-// if (!process.env.NODE_ENV) {
-//   Menu.setApplicationMenu(null);
-// }
-
 app.whenReady().then(() => {
-  showWindow();
+  createAppWindow();
 
   // get screen width
   const primaryDisplay = screen.getPrimaryDisplay();
   const { width } = primaryDisplay.workAreaSize;
-
-  ipcMain.handle('auth:get-accessToken', getAccessToken);
-  ipcMain.handle('auth:get-profile', getProfile);
-  ipcMain.on('auth:log-out', () => {
-    BrowserWindow.getAllWindows().forEach((window) => window.close());
-    createLogoutWindow();
-  });
 
   // ipc for floating window
   ipcMain.on('floating:open', (_, ...args) => {

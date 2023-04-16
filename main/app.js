@@ -1,5 +1,6 @@
 const { BrowserWindow, shell } = require('electron');
 const { join } = require('node:path');
+const {LOCAL_FE_ENDPOINT, PROD_FE_ENDPOINT} = require("./constants");
 
 let win = null;
 
@@ -24,14 +25,10 @@ async function createAppWindow() {
   });
 
   if (process.env.NODE_ENV === 'local') {
-    win.loadURL('http://localhost:5173');
+    win.loadURL(LOCAL_FE_ENDPOINT);
   } else {
-    win.loadURL('https://emoview.irfannm.xyz');
+    win.loadURL(PROD_FE_ENDPOINT);
   }
-
-  // if (process.platform === 'linux') {
-  //   win.autoHideMenuBar(true);
-  // }
 
   win.webContents.setWindowOpenHandler(({ url }) => {
     if (url.startsWith('https://')) shell.openExternal(url);
